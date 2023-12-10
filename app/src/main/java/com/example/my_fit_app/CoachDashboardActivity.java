@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -111,6 +113,7 @@ public class CoachDashboardActivity extends AppCompatActivity implements MyAdapt
     private ValueEventListener eventListener;
     private MyAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -198,4 +201,26 @@ public class CoachDashboardActivity extends AppCompatActivity implements MyAdapt
             }
         }
     }
+
+    @Override
+    public void onEditClick(int position) {
+        if (position >= 0 && position < dataList.size()) {
+            Category category = dataList.get(position);
+
+            if (category != null) {
+                // Create an intent to open the EditCategory activity
+                Intent intent = new Intent(this, EditCategory.class);
+
+                // Pass the data of the clicked item to EditCategory activity
+                intent.putExtra("Key", category.getKey());
+
+                intent.putExtra("categoryName", category.getCategName());
+                intent.putExtra("photoURL", category.getImageURL()); // Add this line to pass the photo URL
+                // Start the EditCategory activity
+                startActivity(intent);
+            }
+        }
+    }
+
+
 }
