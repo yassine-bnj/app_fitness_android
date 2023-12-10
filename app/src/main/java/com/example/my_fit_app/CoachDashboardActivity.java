@@ -188,19 +188,34 @@ public class CoachDashboardActivity extends AppCompatActivity implements MyAdapt
                 String key = category.getKey();
                 String imageUrl = category.getImageURL();
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Category");
-                FirebaseStorage storage = FirebaseStorage.getInstance();
+                // Build the confirmation dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(CoachDashboardActivity.this);
+                builder.setTitle("Confirm Deletion");
+                builder.setMessage("Are you sure you want to delete this item?");
+                builder.setPositiveButton("Yes", (dialog, which) -> {
+                    // User clicked Yes, proceed with deletion
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Category");
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
 
-                if (imageUrl != null && !imageUrl.isEmpty()) {
-                    StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
-                    storageReference.delete().addOnSuccessListener(unused -> {
-                        reference.child(key).removeValue();
-                        Toast.makeText(CoachDashboardActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                    });
-                }
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
+                        storageReference.delete().addOnSuccessListener(unused -> {
+                            reference.child(key).removeValue();
+                            Toast.makeText(CoachDashboardActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
+                builder.setNegativeButton("No", (dialog, which) -> {
+                    // User clicked No, do nothing or provide feedback if needed
+                    Toast.makeText(CoachDashboardActivity.this, "Deletion canceled", Toast.LENGTH_SHORT).show();
+                });
+
+                // Show the confirmation dialog
+                builder.create().show();
             }
         }
     }
+
 
     @Override
     public void onEditClick(int position) {
@@ -220,6 +235,15 @@ public class CoachDashboardActivity extends AppCompatActivity implements MyAdapt
                 startActivity(intent);
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Category category = dataList.get(position);
+
+        Intent intent = new Intent(this, WorkoutActivity.class);
+        intent.putExtra("key", category.getKey());
+        startActivity(intent);
     }
 
 

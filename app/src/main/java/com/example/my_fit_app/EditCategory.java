@@ -238,8 +238,13 @@ public class EditCategory extends AppCompatActivity {
             }
         });
     }
-    public void saveData(){
-        storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
+    public void saveData() {
+        if (uri == null) {
+            Toast.makeText(EditCategory.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        storageReference = FirebaseStorage.getInstance().getReference().child("Category").child(uri.getLastPathSegment());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(EditCategory.this);
         builder.setCancelable(false);
@@ -261,9 +266,11 @@ public class EditCategory extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 dialog.dismiss();
+                Toast.makeText(EditCategory.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     public void updateData(){
         name = updateName.getText().toString().trim();
 

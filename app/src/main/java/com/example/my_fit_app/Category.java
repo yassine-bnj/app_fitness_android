@@ -2,10 +2,15 @@ package com.example.my_fit_app;
 
 import android.widget.EditText;
 
+import java.util.List;
+import java.util.Map;
+
 public class Category {
     private String categName;
     private String imageURL;
     private String key;
+    private Map<String, Exercice> exercises;
+
     public Category() {
     }
 
@@ -36,5 +41,13 @@ public class Category {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public Map<String, Exercice> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(Map<String, Exercice> exercises) {
+        this.exercises = exercises;
     }
 }

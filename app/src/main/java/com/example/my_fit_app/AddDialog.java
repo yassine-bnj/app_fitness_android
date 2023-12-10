@@ -135,10 +135,12 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -220,6 +222,25 @@ public class AddDialog extends AppCompatActivity {
     }
 
     // Outside onCreate
+    private void showSuccessDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddDialog.this);
+        builder.setTitle("Success");
+        builder.setMessage("Category added successfully");
+        builder.setIcon(android.R.drawable.ic_dialog_info); // Set your desired icon here
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Handle the OK button click if needed
+                Intent intent = new Intent(AddDialog.this, CoachDashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        builder.show();
+    }
+
     private void uploadToFirebase(Uri uri) {
         String name = nameCateg.getText().toString();
         final StorageReference imageReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
@@ -238,10 +259,9 @@ public class AddDialog extends AppCompatActivity {
                         databaseReference.child(key).setValue(category);
 
                         progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(AddDialog.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddDialog.this, CoachDashboardActivity.class);
-                        startActivity(intent);
-                        finish();
+
+                        // Show the success dialog instead of a toast
+                        showSuccessDialog();
                     }
                 });
             }
@@ -258,6 +278,7 @@ public class AddDialog extends AppCompatActivity {
             }
         });
     }
+
 
     private String getFileExtension(Uri fileUri) {
         ContentResolver contentResolver = getContentResolver();
