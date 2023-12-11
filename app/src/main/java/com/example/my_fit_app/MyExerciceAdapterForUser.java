@@ -14,29 +14,29 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.ExerciceViewHolder> {
+public class MyExerciceAdapterForUser extends RecyclerView.Adapter<MyExerciceAdapterForUser.ExerciceViewHolder> {
 
     private Context context;
     private List<Exercice> exerciceList;
 
-    public MyExerciceAdapter(Context context, List<Exercice> exerciceList) {
+    public MyExerciceAdapterForUser(Context context, List<Exercice> exerciceList) {
         this.context = context;
         this.exerciceList = exerciceList;
     }
 
     @NonNull
     @Override
-    public ExerciceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycleexercieitem, parent, false);
-        return new ExerciceViewHolder(view);
+    public MyExerciceAdapterForUser.ExerciceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.exercices_item_user, parent, false);
+        return new MyExerciceAdapterForUser.ExerciceViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExerciceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyExerciceAdapterForUser.ExerciceViewHolder holder, int position) {
         Exercice exercice = exerciceList.get(position);
 
         holder.txtNomExercice.setText(exercice.getNomExercice());
-        holder.txtMuscleCible.setText(exercice.getMusclecible());
+       // holder.txtMuscleCible.setText(exercice.getMusclecible());
 
 
 
@@ -57,7 +57,7 @@ public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.Ex
         public ExerciceViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNomExercice = itemView.findViewById(R.id.recnameEx);
-            txtMuscleCible = itemView.findViewById(R.id.reczonecible);
+          //  txtMuscleCible = itemView.findViewById(R.id.reczonecible);
 
 
             imageView = itemView.findViewById(R.id.recImageEx);  // Initialize ImageView

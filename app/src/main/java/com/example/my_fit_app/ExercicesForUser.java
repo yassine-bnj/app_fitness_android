@@ -1,13 +1,13 @@
 package com.example.my_fit_app;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -19,24 +19,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutActivity extends AppCompatActivity {
-
+public class ExercicesForUser extends AppCompatActivity {
     private String categoryKey;
     private RecyclerView recyclerView;
-    private MyExerciceAdapter exerciceAdapter;
-
+    private MyExerciceAdapterForUser exerciceAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workout);
-
+        setContentView(R.layout.activity_exercices_for_user);
         // Retrieve the key from the intent
         categoryKey = getIntent().getStringExtra("key");
 
         // Initialize RecyclerView and adapter
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        exerciceAdapter = new MyExerciceAdapter(this, new ArrayList<>());
+        exerciceAdapter = new MyExerciceAdapterForUser(this, new ArrayList<>());
         recyclerView.setAdapter(exerciceAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBar);
@@ -91,11 +88,8 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle errors
-                Toast.makeText(WorkoutActivity.this, "Failed to retrieve exercises", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExercicesForUser.this, "Failed to retrieve exercises", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
-
 }

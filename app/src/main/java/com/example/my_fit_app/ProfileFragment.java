@@ -44,7 +44,7 @@ public class ProfileFragment extends AppCompatActivity {
         });
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBarP);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override

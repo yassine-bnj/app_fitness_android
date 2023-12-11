@@ -125,6 +125,8 @@ public class AddExerciceActivity extends AppCompatActivity {
             if (imageUri != null) {
                 // Upload the image to Firebase Storage
                 uploadImage(name, nbSeries, nbRepetitions, targetZone);
+
+
             } else {
                 // If no image is selected, create and save the Exercice without an image
                 Exercice exercice = new Exercice(name, "", nbSeries, nbRepetitions, targetZone);

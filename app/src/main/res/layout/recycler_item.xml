@@ -12,9 +12,12 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingEnd="12dp"
+       android:layout_gravity="center"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="60dp"
@@ -33,34 +36,45 @@
             android:text="Title"
             android:textColor="@color/lavender"
             android:textSize="20sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImage"/>
+            android:layout_toEndOf="@id/recImage"
+            android:layout_weight="1"
+            />
 
-        <!-- Bouton d'image pour "Update" -->
-        <ImageButton
-            android:id="@+id/btnEdit"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_below="@id/recTitle"
-            android:src="@drawable/ic_baseline_edit_24"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="onUpdateButtonClick"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            >
+            <!-- Bouton d'image pour "Update" -->
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/recTitle"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onUpdateButtonClick"/>
 
-        <!-- Bouton d'image pour "Delete" -->
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/btnEdit"
-            android:layout_below="@id/recTitle"
-            android:src="@drawable/ic_baseline_delete_24"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="onDeleteButtonClick"/>
-    </RelativeLayout>
+            <!-- Bouton d'image pour "Delete" -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/btnEdit"
+                android:layout_below="@id/recTitle"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onDeleteButtonClick"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

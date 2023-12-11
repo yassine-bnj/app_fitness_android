@@ -1,4 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.cardview.widget.CardView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:id="@+id/recCard"-->
+<!--    android:layout_marginStart="12dp"-->
+<!--    android:layout_marginEnd="12dp"-->
+<!--    android:layout_marginHorizontal="10dp"-->
+<!--    android:layout_marginVertical="10dp"-->
+<!--    app:cardCornerRadius="20dp"-->
+<!--    app:cardElevation="8dp">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:id="@+id/recImageEx"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:shapeAppearanceOverlay="@drawable/rounded"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:id="@+id/recnameEx"-->
+<!--            android:text="Name Exercice"-->
+<!--            android:textColor="@color/lavender"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_toEndOf="@id/recImageEx"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:id="@+id/reczonecible"-->
+<!--            android:text="Target area"-->
+<!--            android:textColor="@color/lavender"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_toEndOf="@id/recImageEx"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:id="@+id/recnbrepetitions"-->
+<!--            android:text="Nb repetitions"-->
+<!--            android:textColor="@color/lavender"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_toEndOf="@id/recImageEx"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:id="@+id/recnbseries"-->
+<!--            android:text="Nb series"-->
+<!--            android:textColor="@color/lavender"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_toEndOf="@id/recImageEx"/>-->
+
+<!--        &lt;!&ndash; Bouton d'image pour "Update" &ndash;&gt;-->
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnEdit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_below="@id/recnameEx"-->
+<!--            android:src="@drawable/ic_baseline_edit_24"-->
+<!--            android:background="?android:attr/selectableItemBackground"-->
+<!--            android:onClick="onUpdateButtonClick"/>-->
+
+<!--        &lt;!&ndash; Bouton d'image pour "Delete" &ndash;&gt;-->
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnDelete"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_toEndOf="@id/btnEdit"-->
+<!--            android:layout_below="@id/recnameEx"-->
+<!--            android:src="@drawable/ic_baseline_delete_24"-->
+<!--            android:background="?android:attr/selectableItemBackground"-->
+<!--            android:onClick="onDeleteButtonClick"/>-->
+<!--    </RelativeLayout>-->
+
+<!--</androidx.cardview.widget.CardView>-->
+
+
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -12,88 +112,91 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingEnd="12dp"
+        android:layout_gravity="center"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
+
             android:id="@+id/recImageEx"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@drawable/rounded"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    >
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:id="@+id/recnameEx"
-            android:text="Name Exercice"
-            android:textColor="@color/lavender"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImageEx"/>
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="30dp"
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:id="@+id/reczonecible"
-            android:text="Target area"
-            android:textColor="@color/lavender"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImageEx"/>
+        android:id="@+id/recnameEx"
+        android:text="Title"
+        android:textColor="@color/lavender"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/recImage"
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:id="@+id/recnbrepetitions"
-            android:text="Nb repetitions"
-            android:textColor="@color/lavender"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImageEx"/>
+        />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:id="@+id/reczonecible"
+                android:text="Target area"
+                android:textColor="@color/lavender"
+                android:textSize="20sp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/recImageEx"/>
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:id="@+id/recnbseries"
-            android:text="Nb series"
-            android:textColor="@color/lavender"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImageEx"/>
+</LinearLayout>
 
-        <!-- Bouton d'image pour "Update" -->
-        <ImageButton
-            android:id="@+id/btnEdit"
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_below="@id/recnameEx"
-            android:src="@drawable/ic_baseline_edit_24"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="onUpdateButtonClick"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            >
+            <!-- Bouton d'image pour "Update" -->
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/recTitle"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onUpdateButtonClick"/>
 
-        <!-- Bouton d'image pour "Delete" -->
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/btnEdit"
-            android:layout_below="@id/recnameEx"
-            android:src="@drawable/ic_baseline_delete_24"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="onDeleteButtonClick"/>
-    </RelativeLayout>
+            <!-- Bouton d'image pour "Delete" -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/btnEdit"
+                android:layout_below="@id/recTitle"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onDeleteButtonClick"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+

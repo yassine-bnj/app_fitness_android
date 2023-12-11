@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +18,9 @@ public class FitnessFragement extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBarF);
+
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -40,4 +44,19 @@ public class FitnessFragement extends AppCompatActivity {
                     }
                 });
     }
+
+    public void goToCalulateImc(View view){
+
+
+    }
+    public void goToMaps(View view){
+        startActivity(new Intent(FitnessFragement.this, maps.class));
+
+
+    }
+    //go to imc activity
+    public void goToImc(View view) {
+        startActivity(new Intent(FitnessFragement.this, BmiCalc.class));
+    }
+
 }
