@@ -51,7 +51,7 @@
                 android:id="@+id/txtNameEx"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Name of Exercice"
@@ -62,7 +62,7 @@
                 android:id="@+id/txtnbseries"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:inputType="number"
@@ -74,7 +74,7 @@
                 android:id="@+id/txtnbrepetiotions"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:inputType="number"
@@ -86,14 +86,34 @@
                 android:id="@+id/txtzonecible"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Target Area"
                 android:background="@drawable/rounded"
                 android:gravity="center"/>
 
+            <EditText
+                android:id="@+id/txtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="Description of Exercice"
+                android:background="@drawable/rounded"
+                android:gravity="center"/>
 
+            <EditText
+                android:id="@+id/txtYtbLink"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="Youtube link of Exercice"
+                android:background="@drawable/rounded"
+                android:gravity="center"/>
 
             <Button
                 android:id="@+id/addEx"

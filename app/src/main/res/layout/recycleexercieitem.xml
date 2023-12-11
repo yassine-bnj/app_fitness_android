@@ -171,20 +171,20 @@
             android:layout_marginTop="7dp"
             >
             <!-- Bouton d'image pour "Update" -->
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_below="@id/recTitle"
-                android:src="@drawable/ic_baseline_edit_24"
-                android:background="?android:attr/selectableItemBackground"
-                android:onClick="onUpdateButtonClick"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/btnEditExercice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_below="@id/recTitle"-->
+<!--                android:src="@drawable/ic_baseline_edit_24"-->
+<!--                android:background="?android:attr/selectableItemBackground"-->
+<!--                android:onClick="onUpdateButtonClick"/>-->
 
             <!-- Bouton d'image pour "Delete" -->
             <ImageButton
-                android:id="@+id/btnDelete"
+                android:id="@+id/btnDeleteExercice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

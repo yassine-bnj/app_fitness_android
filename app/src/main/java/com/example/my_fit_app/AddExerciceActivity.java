@@ -89,6 +89,8 @@ public class AddExerciceActivity extends AppCompatActivity {
     private EditText txtnbseries;
     private EditText txtnbrepetitions;
     private EditText txtzonecible;
+    private EditText txtdescription;
+    private EditText txtytblink;
     private Button addExButton;
     private ImageView uploadImage;
     private ProgressBar progressBar;
@@ -109,6 +111,8 @@ public class AddExerciceActivity extends AppCompatActivity {
         txtnbseries = findViewById(R.id.txtnbseries);
         txtnbrepetitions = findViewById(R.id.txtnbrepetiotions);
         txtzonecible = findViewById(R.id.txtzonecible);
+        txtdescription = findViewById(R.id.txtDescription);
+        txtytblink = findViewById(R.id.txtYtbLink);
         addExButton = findViewById(R.id.addEx);
         uploadImage = findViewById(R.id.uploadImageEx);
         progressBar = findViewById(R.id.progressBar);
@@ -117,6 +121,8 @@ public class AddExerciceActivity extends AppCompatActivity {
         addExButton.setOnClickListener(v -> {
             // Get the values from your UI components
             String name = txtNameEx.getText().toString();
+            String desc = txtdescription.getText().toString();
+            String link = txtytblink.getText().toString();
             int nbSeries = Integer.parseInt(txtnbseries.getText().toString());
             int nbRepetitions = Integer.parseInt(txtnbrepetitions.getText().toString());
             String targetZone = txtzonecible.getText().toString();
@@ -124,12 +130,12 @@ public class AddExerciceActivity extends AppCompatActivity {
             // Check if an image is selected
             if (imageUri != null) {
                 // Upload the image to Firebase Storage
-                uploadImage(name, nbSeries, nbRepetitions, targetZone);
+                uploadImage(name, nbSeries, nbRepetitions, targetZone,desc,link);
 
 
             } else {
                 // If no image is selected, create and save the Exercice without an image
-                Exercice exercice = new Exercice(name, "", nbSeries, nbRepetitions, targetZone);
+                Exercice exercice = new Exercice(name, "", nbSeries, nbRepetitions, targetZone,desc,link);
                 saveExerciceToDatabase(exercice);
             }
         });
@@ -158,7 +164,7 @@ public class AddExerciceActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadImage(String name, int nbSeries, int nbRepetitions, String targetZone) {
+    private void uploadImage(String name, int nbSeries, int nbRepetitions, String targetZone, String description,String ytblink) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference().child("exercise_images");
         StorageReference imageReference = storageReference.child(System.currentTimeMillis() + "." + "jpg");
@@ -168,7 +174,7 @@ public class AddExerciceActivity extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     imageReference.getDownloadUrl().addOnSuccessListener(uri -> {
                         // Create and save the Exercice with the image URL
-                        Exercice exercice = new Exercice(name, uri.toString(), nbSeries, nbRepetitions, targetZone);
+                        Exercice exercice = new Exercice(name, uri.toString(), nbSeries, nbRepetitions, targetZone,description,ytblink);
                         saveExerciceToDatabase(exercice);
                     });
                 })

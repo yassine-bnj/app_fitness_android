@@ -191,7 +191,7 @@ public class CoachDashboardActivity extends AppCompatActivity implements MyAdapt
                 // Build the confirmation dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(CoachDashboardActivity.this);
                 builder.setTitle("Confirm Deletion");
-                builder.setMessage("Are you sure you want to delete this item?");
+                builder.setMessage("Are you sure you want to delete this Category?");
                 builder.setPositiveButton("Yes", (dialog, which) -> {
                     // User clicked Yes, proceed with deletion
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Category");

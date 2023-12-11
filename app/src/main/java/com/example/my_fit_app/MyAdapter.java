@@ -70,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         void onEditClick(int position);
 
         void onItemClick(int position);
+
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

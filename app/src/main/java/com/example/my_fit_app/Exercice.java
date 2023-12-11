@@ -7,16 +7,21 @@ public class Exercice {
    private String imageURLEx;
    private int nbserie,nbrepetition;
    private String musclecible;
+   private String description;
+   private String ytblink;
 
    public Exercice() {
    }
 
-   public Exercice(String nomExercice, String imageURLEx, int nbserie, int nbrepetition, String musclecible) {
+   public Exercice(String nomExercice, String imageURLEx, int nbserie, int nbrepetition, String musclecible,String description,String ytblink) {
       this.nomExercice = nomExercice;
       this.imageURLEx = imageURLEx;
       this.nbserie = nbserie;
       this.nbrepetition = nbrepetition;
       this.musclecible = musclecible;
+      this.description = description;
+      this.ytblink = ytblink;
+
    }
 
    public String getNomExercice() {
@@ -65,5 +70,21 @@ public class Exercice {
 
    public void setMusclecible(String musclecible) {
       this.musclecible = musclecible;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   public String getYtblink() {
+      return ytblink;
+   }
+
+   public void setYtblink(String ytblink) {
+      this.ytblink = ytblink;
    }
 }
