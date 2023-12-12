@@ -18,17 +18,30 @@ public class MyExerciceAdapterForUser extends RecyclerView.Adapter<MyExerciceAda
 
     private Context context;
     private List<Exercice> exerciceList;
+    private MyExerciceAdapterForUser.OnItemClickListener mListener;
+
+    public List<Exercice> getExerciceList() {
+
+        return exerciceList;
+    }
+    // Define an interface to handle button clicks
+    public interface OnItemClickListener {
+
+        void onExerciceItemClick(int position);
+    }
 
     public MyExerciceAdapterForUser(Context context, List<Exercice> exerciceList) {
         this.context = context;
         this.exerciceList = exerciceList;
     }
-
+    public void setOnItemClickListener(MyExerciceAdapterForUser.OnItemClickListener listener) {
+        this.mListener = listener;
+    }
     @NonNull
     @Override
     public MyExerciceAdapterForUser.ExerciceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.exercices_item_user, parent, false);
-        return new MyExerciceAdapterForUser.ExerciceViewHolder(view);
+        return new MyExerciceAdapterForUser.ExerciceViewHolder(view, mListener);
     }
 
     @Override
@@ -43,6 +56,8 @@ public class MyExerciceAdapterForUser extends RecyclerView.Adapter<MyExerciceAda
         Glide.with(context)
                 .load(exercice.getImageURLEx())
                 .into(holder.imageView);
+
+
     }
 
     @Override
@@ -54,13 +69,29 @@ public class MyExerciceAdapterForUser extends RecyclerView.Adapter<MyExerciceAda
         TextView txtNomExercice, txtMuscleCible, txtNbRepetition, txtNbSerie;
         ImageView imageView;  // Add ImageView for the image
 
-        public ExerciceViewHolder(@NonNull View itemView) {
+        public ExerciceViewHolder(@NonNull View itemView, final MyExerciceAdapterForUser.OnItemClickListener listener) {
             super(itemView);
             txtNomExercice = itemView.findViewById(R.id.recnameEx);
           //  txtMuscleCible = itemView.findViewById(R.id.reczonecible);
 
 
             imageView = itemView.findViewById(R.id.recImageEx);  // Initialize ImageView
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    System.out.println("onItemClick");
+                    System.out.println(listener);
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onExerciceItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
     }

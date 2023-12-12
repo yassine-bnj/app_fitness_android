@@ -2,7 +2,6 @@ package com.example.my_fit_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +14,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ProfileFragment extends AppCompatActivity {
+public class profileUser extends AppCompatActivity {
+
+
     FirebaseAuth auth;
     Button btnLogout;
     FirebaseUser user;
@@ -25,7 +26,7 @@ public class ProfileFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_fragment);
+        setContentView(R.layout.activity_profile_user);
 
 
         auth= FirebaseAuth.getInstance();
@@ -44,6 +45,10 @@ public class ProfileFragment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+
+
+
+
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -59,15 +64,15 @@ public class ProfileFragment extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.home_fragment:
                                 // Handle click on home item
-                                startActivity(new Intent(ProfileFragment.this, CoachDashboardActivity.class));
+                                startActivity(new Intent(profileUser.this, HomeFragement.class));
                                 return true;
                             case R.id.fitness_fragment:
                                 // Handle click on fitness item
-                                startActivity(new Intent(ProfileFragment.this, FitnessFragement.class));
+                                startActivity(new Intent(profileUser.this, FitnessFragement.class));
                                 return true;
                             case R.id.profile_fragment:
                                 // Handle click on profile item
-                                startActivity(new Intent(ProfileFragment.this, ProfileFragment.class));
+                                startActivity(new Intent(profileUser.this, ProfileFragment.class));
                                 return true;
                             default:
                                 return false;
@@ -75,6 +80,9 @@ public class ProfileFragment extends AppCompatActivity {
                     }
                 });
     }
+
+
+
 
 
 

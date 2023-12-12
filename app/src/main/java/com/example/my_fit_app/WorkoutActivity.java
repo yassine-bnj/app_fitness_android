@@ -41,6 +41,8 @@ public class WorkoutActivity extends AppCompatActivity  implements MyExerciceAda
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         exerciceAdapter = new MyExerciceAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(exerciceAdapter);
+        // Set the listener in your adapter
+        exerciceAdapter.setOnItemClickListener(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -79,9 +81,12 @@ public class WorkoutActivity extends AppCompatActivity  implements MyExerciceAda
                 List<Exercice> exerciceList = new ArrayList<>();
 
                 for (DataSnapshot exerciseSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println(exerciseSnapshot);
                     Exercice exercice = exerciseSnapshot.getValue(Exercice.class);
+                    exercice.setKey(exerciseSnapshot.getKey());
                     if (exercice != null) {
                         System.out.println(exercice.getImageURLEx());
+                        System.out.println(exercice.toString());
                         exerciceList.add(exercice);
                     }
                 }
@@ -101,46 +106,55 @@ public class WorkoutActivity extends AppCompatActivity  implements MyExerciceAda
 
     @Override
     public void onDeleteClick(int position) {
-//        if (position >= 0 && position < exerciceAdapter.getItemCount()) {
-//            Exercice exercice = exerciceAdapter.getExerciceList().get(position);
-//
-//            if (exercice != null) {
-//                String exerciceKey = exercice.getKey();
-//                String imageUrl = exercice.getImageURLEx();
-//
-//                // Build the confirmation dialog
-//                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
-//                builder.setTitle("Confirm Deletion");
-//                builder.setMessage("Are you sure you want to delete this exercise?");
-//                builder.setPositiveButton("Yes", (dialog, which) -> {
-//                    // User clicked Yes, proceed with deletion
-//                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Category")
-//                            .child(categoryKey) // Specify the category key
-//                            .child("exercises") // Specify the exercises node
-//                            .child(exerciceKey); // Specify the exercice key
-//
-//                    FirebaseStorage storage = FirebaseStorage.getInstance();
-//
-//                    if (imageUrl != null && !imageUrl.isEmpty()) {
-//                        StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
-//                        storageReference.delete().addOnSuccessListener(unused -> {
-//                            reference.removeValue();  // Remove the exercise from the database
-//                            Toast.makeText(WorkoutActivity.this, "Exercise Deleted", Toast.LENGTH_SHORT).show();
-//                        }).addOnFailureListener(e -> {
-//                            // Handle deletion failure
-//                            Toast.makeText(WorkoutActivity.this, "Failed to delete exercise", Toast.LENGTH_SHORT).show();
-//                        });
-//                    }
-//                });
-//                builder.setNegativeButton("No", (dialog, which) -> {
-//                    // User clicked No, do nothing or provide feedback if needed
-//                    Toast.makeText(WorkoutActivity.this, "Deletion canceled", Toast.LENGTH_SHORT).show();
-//                });
-//
-//                // Show the confirmation dialog
-//                builder.create().show();
-//            }
-//        }
+        System.out.println("onDeleteClick");
+        if (position >= 0 && position < exerciceAdapter.getItemCount()) {
+            Exercice exercice = exerciceAdapter.getExerciceList().get(position);
+
+            System.out.println(exercice.toString());
+
+
+
+            if (exercice != null) {
+                System.out.println("exercice");
+                System.out.println(exercice.toString());
+                String exerciceKey = exercice.getKey();
+                String imageUrl = exercice.getImageURLEx();
+System.out.println("exerciceKey");
+System.out.println(exerciceKey);
+                // Build the confirmation dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
+                builder.setTitle("Confirm Deletion");
+                builder.setMessage("Are you sure you want to delete this exercise?");
+                builder.setPositiveButton("Yes", (dialog, which) -> {
+                    // User clicked Yes, proceed with deletion
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Category")
+                            .child(categoryKey) // Specify the category key
+                            .child("exercises") // Specify the exercises node
+                            .child(exerciceKey); // Specify the exercice key
+
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
+                        storageReference.delete().addOnSuccessListener(unused -> {
+                            reference.removeValue();  // Remove the exercise from the database
+                            Toast.makeText(WorkoutActivity.this, "Exercise Deleted", Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(e -> {
+                            // Handle deletion failure
+                            Toast.makeText(WorkoutActivity.this, "Failed to delete exercise", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                });
+                builder.setNegativeButton("No", (dialog, which) -> {
+                    // User clicked No, do nothing or provide feedback if needed
+                    Toast.makeText(WorkoutActivity.this, "Deletion canceled", Toast.LENGTH_SHORT).show();
+                });
+
+                // Show the confirmation dialog
+                builder.create().show();
+            }
+        }
+
     }
 
     @Override
@@ -155,9 +169,13 @@ public class WorkoutActivity extends AppCompatActivity  implements MyExerciceAda
         detailIntent.putExtra("exercice_description", selectedExercice.getDescription());
         detailIntent.putExtra("exercice_ytblink", selectedExercice.getYtblink());
         detailIntent.putExtra("exercice_image", selectedExercice.getImageURLEx());
+        detailIntent.putExtra("muscle_cible", selectedExercice.getMusclecible());
 
         startActivity(detailIntent);
     }
+
+
+
 
 
 }

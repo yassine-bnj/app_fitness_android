@@ -22,14 +22,14 @@ public class ExerciceDetailsActivity extends AppCompatActivity {
         String exerciceImageURL = getIntent().getStringExtra("exercice_image");
 
         // Find TextViews in the layout
-//        TextView nameView = findViewById(R.id.nameView);
-//        TextView muscleCibleView = findViewById(R.id.muscleCibleView);
-//        TextView nbRepetitionView = findViewById(R.id.nbRepetitionView);
+        TextView nameView = findViewById(R.id.nameView);
+        TextView muscleCibleView = findViewById(R.id.muscleCibleView);
+        TextView nbRepetitionView = findViewById(R.id.nbRepetitionView);
 
         // Set data to TextViews
-//        nameView.setText(exerciceName);
-//        muscleCibleView.setText("Muscle cible: " + exerciceDescription);
-//        nbRepetitionView.setText("Number of Repetitions: " + exerciceNbRepetitions);
+        nameView.setText(exerciceName);
+        muscleCibleView.setText("Muscle cible: " + exerciceDescription);
+        nbRepetitionView.setText("Number of Repetitions: " + exerciceNbRepetitions);
 
         // Add more TextViews and set data accordingly
     }

@@ -31,7 +31,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.ExerciceViewHolder> {
+public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.ExerciceViewHolder>
+
+{
 
     private Context context;
     private List<Exercice> exerciceList;
@@ -43,6 +45,7 @@ public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.Ex
     }
 
     public List<Exercice> getExerciceList() {
+
         return exerciceList;
     }
 
@@ -101,6 +104,7 @@ public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.Ex
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
+                        // Get the position of the item that was clicked
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
@@ -111,8 +115,11 @@ public class MyExerciceAdapter extends RecyclerView.Adapter<MyExerciceAdapter.Ex
 
             // Handle item click
             itemView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
+                    System.out.println("onItemClick");
+                    System.out.println(listener);
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {

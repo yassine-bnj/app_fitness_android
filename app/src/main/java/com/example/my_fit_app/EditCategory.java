@@ -233,8 +233,8 @@ public class EditCategory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveData();
-                Intent intent = new Intent(EditCategory.this, CoachDashboardActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(EditCategory.this, CoachDashboardActivity.class);
+//                startActivity(intent);
             }
         });
     }

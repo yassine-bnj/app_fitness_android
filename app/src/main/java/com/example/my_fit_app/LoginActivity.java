@@ -3,7 +3,9 @@ package com.example.my_fit_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -91,6 +93,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
+
+
+
         etLoginEmail = findViewById(R.id.etLoginEmail);
         etLoginPassword = findViewById(R.id.etLoginPass);
         tvRegisterHere = findViewById(R.id.tvRegisterHere);
@@ -124,12 +131,13 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
-                        if ("coach@gmail.com".equals(email)) {
-                            // Redirect to CoachDashboardActivity
+                        if ("coach1@gmail.com".equals(email)) {
+                            saveUserEmail(email);
                             Toast.makeText(LoginActivity.this, "Welcome Coach!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, CoachDashboardActivity.class));
                             finish();
                         } else {
+                            saveUserEmail(email);
                             Toast.makeText(LoginActivity.this, "Welcome Athlete!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, HomeFragement.class));
                             finish();
@@ -141,4 +149,15 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
+
+    public void saveUserEmail(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("email", email);
+        myEdit.commit();
+    }
+
+
+
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -43,6 +44,14 @@ public class HomeFragement extends AppCompatActivity  implements CategoriesAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_fragement);
+
+        if (getEmail() == null){
+            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
 
         recyclerView = findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
@@ -101,7 +110,7 @@ public class HomeFragement extends AppCompatActivity  implements CategoriesAdapt
                                 return true;
                             case R.id.profile_fragment:
                                 // Handle click on profile item
-                                startActivity(new Intent(HomeFragement.this, ProfileFragment.class));
+                                startActivity(new Intent(HomeFragement.this, profileUser.class));
                                 return true;
                             default:
                                 return false;
@@ -127,4 +136,12 @@ public class HomeFragement extends AppCompatActivity  implements CategoriesAdapt
         intent.putExtra("key", category.getKey());
         startActivity(intent);
     }
+
+    public String getEmail(){
+        SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+        String email = sharedPreferences.getString("email","");
+        return email;
+    }
+
+
 }

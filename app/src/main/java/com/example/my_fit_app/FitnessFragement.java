@@ -36,7 +36,7 @@ public class FitnessFragement extends AppCompatActivity {
                                 return true;
                             case R.id.profile_fragment:
                                 // Handle click on profile item
-                                startActivity(new Intent(FitnessFragement.this, ProfileFragment.class));
+                                startActivity(new Intent(FitnessFragement.this, profileUser.class));
                                 return true;
                             default:
                                 return false;

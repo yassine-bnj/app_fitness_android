@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExercicesForUser extends AppCompatActivity {
+public class ExercicesForUser extends AppCompatActivity implements MyExerciceAdapterForUser.OnItemClickListener{
     private String categoryKey;
     private RecyclerView recyclerView;
     private MyExerciceAdapterForUser exerciceAdapter;
@@ -36,27 +37,33 @@ public class ExercicesForUser extends AppCompatActivity {
         exerciceAdapter = new MyExerciceAdapterForUser(this, new ArrayList<>());
         recyclerView.setAdapter(exerciceAdapter);
 
+        // Set the listener in your adapter
+        exerciceAdapter.setOnItemClickListener(this);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomBar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home_fragment:
-                    // Handle click on home item
-                    startActivity(new Intent(this, WorkoutActivity.class));
-                    return true;
-                case R.id.add_fragment:
-                    // Pass the key to AddExerciceActivity
-                    Intent addExerciceIntent = new Intent(this, AddExerciceActivity.class);
-                    addExerciceIntent.putExtra("categoryKey", categoryKey);
-                    startActivity(addExerciceIntent);
-                    return true;
-                case R.id.profile_fragment:
-                    // Handle click on profile item
-                    startActivity(new Intent(this, ProfileFragment.class));
-                    return true;
-                default:
-                    return false;
-            }
-        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.home_fragment:
+                                // Handle click on home item
+                                startActivity(new Intent(ExercicesForUser.this, HomeFragement.class));
+                                return true;
+                            case R.id.fitness_fragment:
+                                // Handle click on fitness item
+                                startActivity(new Intent(ExercicesForUser.this, FitnessFragement.class));
+                                return true;
+                            case R.id.profile_fragment:
+                                // Handle click on profile item
+                                startActivity(new Intent(ExercicesForUser.this, ProfileFragment.class));
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
 
         // Retrieve and display exercises
         retrieveExercises();
@@ -92,4 +99,22 @@ public class ExercicesForUser extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onExerciceItemClick(int position) {
+        Exercice selectedExercice = exerciceAdapter.getExerciceList().get(position);
+
+        Intent detailIntent = new Intent(ExercicesForUser.this, exerciceDetailsForUser.class);
+        detailIntent.putExtra("exercice_key", selectedExercice.getKey());
+        detailIntent.putExtra("exercice_name", selectedExercice.getNomExercice());
+        detailIntent.putExtra("exercice_nbseries", selectedExercice.getNbserie());
+        detailIntent.putExtra("exercice_nbrepetitions", selectedExercice.getNbrepetition());
+        detailIntent.putExtra("exercice_description", selectedExercice.getDescription());
+        detailIntent.putExtra("exercice_ytblink", selectedExercice.getYtblink());
+        detailIntent.putExtra("exercice_image", selectedExercice.getImageURLEx());
+        detailIntent.putExtra("muscle_cible", selectedExercice.getMusclecible());
+
+        startActivity(detailIntent);
+    }
+
+
 }

@@ -87,4 +87,18 @@ public class Exercice {
    public void setYtblink(String ytblink) {
       this.ytblink = ytblink;
    }
+
+   @Override
+   public String toString() {
+      return "Exercice{" +
+              "nomExercice='" + nomExercice + '\'' +
+              ", key='" + key + '\'' +
+              ", imageURLEx='" + imageURLEx + '\'' +
+              ", nbserie=" + nbserie +
+              ", nbrepetition=" + nbrepetition +
+              ", musclecible='" + musclecible + '\'' +
+              ", description='" + description + '\'' +
+              ", ytblink='" + ytblink + '\'' +
+              '}';
+   }
 }

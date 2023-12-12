@@ -51,7 +51,7 @@
         android:background="@color/black"
         app:itemIconTint="@color/icontint"
         app:itemTextColor="@color/white"
-        app:menu="@menu/menu_coach"
+        app:menu="@menu/menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

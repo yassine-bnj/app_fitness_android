@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class Register extends AppCompatActivity {
     Button btnRegister;
 
     FirebaseAuth mAuth;
-
+    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Programs");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class Register extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    createProgramForUser();
                     if (task.isSuccessful()){
                         Toast.makeText(Register.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Register.this, LoginActivity.class));
@@ -71,4 +74,19 @@ public class Register extends AppCompatActivity {
             });
         }
     }
+
+    public void createProgramForUser() {
+        Program program = new Program();
+                //get only before @
+
+        String user =   etRegEmail.getText().toString().split("@")[0];
+
+        program.setProgramName(user+"'s Program");
+        program.setOwnerEmail(etRegEmail.getText().toString());
+        String key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(program);
+
+
+    }
+
 }

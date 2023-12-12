@@ -193,7 +193,7 @@
                 android:layout_below="@id/recTitle"
                 android:src="@drawable/ic_baseline_delete_24"
                 android:background="?android:attr/selectableItemBackground"
-                android:onClick="onDeleteButtonClick"/>
+                />
         </LinearLayout>
 
     </LinearLayout>
