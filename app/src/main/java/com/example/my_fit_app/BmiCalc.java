@@ -174,7 +174,7 @@ public class BmiCalc extends AppCompatActivity {
     }
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(BmiCalc.this,MainActivity.class);
+        Intent intent = new Intent(BmiCalc.this,WorkoutActivity.class);
         startActivity(intent);
     }
 }

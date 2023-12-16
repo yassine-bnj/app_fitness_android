@@ -21,16 +21,12 @@ public class ExerciceDetailsActivity extends AppCompatActivity {
         String exerciceYtbLink = getIntent().getStringExtra("exercice_ytblink");
         String exerciceImageURL = getIntent().getStringExtra("exercice_image");
 
-        // Find TextViews in the layout
-        TextView nameView = findViewById(R.id.nameView);
-        TextView muscleCibleView = findViewById(R.id.muscleCibleView);
-        TextView nbRepetitionView = findViewById(R.id.nbRepetitionView);
-
-        // Set data to TextViews
-        nameView.setText(exerciceName);
-        muscleCibleView.setText("Muscle cible: " + exerciceDescription);
-        nbRepetitionView.setText("Number of Repetitions: " + exerciceNbRepetitions);
-
+        // Initialize your UI components
+//        TextView txtNameEx = findViewById(R.id.txtNameEx);
+//        TextView txtNbSeries = findViewById(R.id.txtNbSeries);
+//        TextView txtNbRepetitions = findViewById(R.id.txtNbRepetitions);
+//        TextView txtDescription = findViewById(R.id.txtDescription);
+//        TextView txtYtbLink = findViewById(R.id.txtYtbLink);
         // Add more TextViews and set data accordingly
     }
 }
